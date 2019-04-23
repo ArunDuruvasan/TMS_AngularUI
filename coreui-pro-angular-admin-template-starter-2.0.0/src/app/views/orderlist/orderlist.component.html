@@ -1,0 +1,38 @@
+<!-- <div class="container" style="background-color: white"> -->
+  <div class="row" style="background-color: white">      
+        <table class="table table-sm" style="background-color: white">
+          <thead class="thead-light">
+            <tr>              
+              <th scope="col">Order No</th>
+              <th scope="col">Date</th>
+              <th scope="col">Order Type</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of Orderlist">
+                <td><button type="button" class="btn btn-link" label="Click" (click)="viewOrder(order.OrderKey)">{{ order.OrderNo }}</button>     
+                 <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+               </td>  
+               <td>{{ order.OrderDate|date }} </td> 
+               <td>{{ order.ordertypedescription}}</td>               
+               <td *ngIf="order.statusdescription  == 'InProgress'"><span class="badge badge-pill badge-primary">{{ order.statusdescription }}</span></td>
+               <td *ngIf="order.statusdescription  == 'OnHold'"><span class="badge badge-pill badge-warning">{{ order.statusdescription }}</span></td>
+               <td *ngIf="order.statusdescription  == 'Complete'"><span class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>              
+                
+            </tr>            
+          </tbody>
+        </table>
+  </div>
+
+  <!-- <div *ngIf="customer && !customer.orders" class="row">
+      No orders found
+  </div> 
+  <div *ngIf="!customer" class="row">
+      No customer found
+  </div>   -->
+  <router-outlet></router-outlet>
+
+
+    
+ 

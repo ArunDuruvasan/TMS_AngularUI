@@ -1,0 +1,30 @@
+
+<div class="form-group dropright">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="drpBillTo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{VendorName}}
+      </button>   
+      <div class="dropdown-menu" aria-labelledby="drpBillTo">        
+              <li *ngFor="let Address of vendors"
+              (click)="onSelect(Address)">               
+                <a class="dropdown-item" >{{Address.Name}}</a>
+              </li>            
+      </div>    
+  </div>     
+   <div *ngIf="selectedVendor">   
+  <div class="form-group">
+       <input type="text" class="form-control" id="inputAddress"  placeholder="1234 Main St" [(ngModel)]="selectedVendor.Address1"> </div>
+    <div class="form-group">
+       <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" [(ngModel)]="selectedVendor.Address2">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+          <input type="text" class="form-control" id="inputCity" placeholder="City" [(ngModel)]="selectedVendor.City">
+      </div>
+      <div class="form-group col-md-4">       
+        <input type="text" class="form-control" id="inputState" placeholder="State" [(ngModel)]="selectedVendor.State">
+      </div>
+      <div class="form-group col-md-3">
+       <input type="text" class="form-control" id="inputZip" placeholder="Zip" [(ngModel)]="selectedVendor.Zip">
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,137 @@
+<div class="form-row">
+        
+                <div class="form-group col-md-2">  
+                    <input class="form-control" type="text" placeholder="Size" id="newcontainerSize" [(ngModel)]="newAttribute.containerSize" name="containerSize" />                
+                </div>
+                <div class="form-group col-md-2" >                       
+                        <select id="drpnewcontainerType" class="form-control" placeholder="Type" name="containerNo"
+                        [(ngModel)]="newAttribute.containerNo">
+                          <option value=1>20DRY</option>
+                          <option value=2>40DRY</option>  
+                          <option value=3>40HDRY</option>
+                          <option value=4>45HDRY</option>
+                          <option value=5>20OPEN</option>
+                          <option value=6>40OPEN</option>
+                          <option value=7>20FLAT</option>
+                          <option value=8>40FLAT</option>                                 
+                        </select>
+                </div>
+                <div class="form-group col-md-2">                       
+                        <input class="form-control" type="text" placeholder="chassis" id="newchassis" [(ngModel)]="newAttribute.chassis" name="chassis" />          
+                </div>
+                <div class="form-group col-md-2">                       
+                        <input class="form-control" type="text" placeholder="seal no" id="newseaNo" [(ngModel)]="newAttribute.sealNo" name="seaNo" />         
+                 </div>
+                 <div class="form-group col-md-2">
+                        <input [(ngModel)]="newAttribute.weight" class="form-control"  placeholder="weight" type="text" name="weight" />                    
+                  </div>
+
+                  <div class="form-group col-md-2">
+                        <input [(ngModel)]="newAttribute.apptdatefrom" class="form-control" type="date" name="apptdatefrom" placeholder="apptdatefrom"/>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                            <input [(ngModel)]="newAttribute.apptdateto" class="form-control" type="date" name="apptdateto" placeholder="apptdateto"/>          
+                      </div>
+    
+                      <div class="form-group col-md-2">
+                            <input [(ngModel)]="newAttribute.status" class="form-control" type="text" name="status" placeholder="status"/> 
+                        </div>
+
+                    <div class="form-group col-md-2">
+                            <input [(ngModel)]="newAttribute.statusdate" class="form-control" type="date" name="statusdate" placeholder="statusdate"/>           
+                  </div>
+
+                  <div class="form-group col-md-2">
+                        <input [(ngModel)]="newAttribute.holdreason" class="form-control" type="text" name="holdreason" placeholder="holdreason" /> 
+                    </div>
+                    <div class="form-group col-md-2">
+                            <input [(ngModel)]="newAttribute.holddate" class="form-control" type="date" name="holddate" placeholder="holddate"/>
+                        </div>
+                        <div class="form-group col-md-2">                                
+                                <button type="button" class="btn btn-outline-success" (click)="addFieldValue()">Add Container</button>
+                        </div>
+</div>
+<br>
+
+<div class="table-responsive" style="overflow-x: auto">         
+<table id="containerAttributes" class="table table-sm" cellspacing="0" width="100%">
+    <thead>
+        <tr>        
+                        <th scope="col">Container_No</th>
+                        <th scope="col">Container_Size</th>
+                        <th scope="col">Chassis_No</th>
+                        <th scope="col">Seal_No</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">appt_From</th>
+                        <th scope="col">appt_To</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Hold_Reason</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th> 
+                                   
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let field of ContainerDetails; let i = index" >
+            <td > <input [(ngModel)]="field.containerSize" class="form-control form-control-sm" type="text" name="{{field.containerSize}}" /> </td> 
+            <td >        
+                <select id="drpcontainerType" class="form-control" aria-placeholder="containerNo" name="{{field.containerNo}}"
+                [(ngModel)]="field.containerNo" >
+                  <option value=1>20DRY</option>
+                  <option value=2>40DRY</option>  
+                  <option value=3>40HDRY</option>
+                  <option value=4>45HDRY</option>
+                  <option value=5>20OPEN</option>
+                  <option value=6>40OPEN</option>
+                  <option value=7>20FLAT</option>
+                  <option value=8>40FLAT</option>                                 
+                </select>              
+                   
+            </td>
+
+            <td >  <input [(ngModel)]="field.chassis" class="form-control" type="text" name="{{field.chassis}}" /></td>
+            <td > <input [(ngModel)]="field.sealNo" class="form-control" type="text" name="{{field.sealNo}}" /></td>
+            <td > <input [(ngModel)]="field.weight" class="form-control" type="text" name="{{field.weight}}" /></td>
+            <td > <input [(ngModel)]="field.apptdatefrom" class="form-control" type="date" name="{{field.apptdatefrom}}"/></td>            
+            <td > <input [(ngModel)]="field.apptdateto" class="form-control" type="date" name="{{field.apptdateto}}" /></td>
+            <td > <input [(ngModel)]="field.status" class="form-control" type="text" name="{{field.status}}" /></td>
+            <td > <input [(ngModel)]="field.statusdate" class="form-control" type="date" name="{{field.statusdate}}" /></td>
+            <td > <input [(ngModel)]="field.holdreason" class="form-control" type="text" name="{{field.holdreason}}" /></td>           
+            <td >  <input [(ngModel)]="field.holddate" class="form-control" type="date" name="{{field.holddate}}" /></td>         
+            <td >
+                <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+            </td>
+        </tr>
+        <!-- <tr>
+            <td>  <input class="form-control" type="text" id="newcontainerSize" [(ngModel)]="newAttribute.containerSize" name="containerSize" /> </td>           
+            <td>
+                <select id="drpnewcontainerType" class="form-control" aria-placeholder="containerNo" name="containerNo"
+                [(ngModel)]="newAttribute.containerNo">
+                  <option value=1>20DRY</option>
+                  <option value=2>40DRY</option>  
+                  <option value=3>40HDRY</option>
+                  <option value=4>45HDRY</option>
+                  <option value=5>20OPEN</option>
+                  <option value=6>40OPEN</option>
+                  <option value=7>20FLAT</option>
+                  <option value=8>40FLAT</option>                                 
+                </select>
+            </td>          
+            <td>  <input class="form-control" type="text" id="newchassis" [(ngModel)]="newAttribute.chassis" name="chassis" /></td>           
+            <td>  <input class="form-control" type="text" id="newseaNo" [(ngModel)]="newAttribute.sealNo" name="seaNo" /></td>          
+            <td> <input [(ngModel)]="newAttribute.weight" class="form-control" type="text" name="weight" /></td>           
+            <td> <input [(ngModel)]="newAttribute.apptdatefrom" class="form-control" type="date" name="apptdatefrom" /></td>           
+            <td> <input [(ngModel)]="newAttribute.apptdateto" class="form-control" type="date" name="apptdateto" /></td>          
+            <td>  <input [(ngModel)]="newAttribute.status" class="form-control" type="text" name="status" /></td>           
+            <td>  <input [(ngModel)]="newAttribute.statusdate" class="form-control" type="date" name="statusdate"/></td>            
+            <td>  <input [(ngModel)]="newAttribute.holdreason" class="form-control" type="text" name="holdreason" /></td>            
+            <td>  <input [(ngModel)]="newAttribute.holddate" class="form-control" type="date" name="holddate" /></td>            
+            <td>
+                <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
+            </td>
+        </tr> -->
+    </tbody>
+</table>
+</div>
