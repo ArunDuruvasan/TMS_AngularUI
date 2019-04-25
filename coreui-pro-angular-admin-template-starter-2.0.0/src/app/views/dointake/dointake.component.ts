@@ -81,34 +81,7 @@ export class DOIntakeComponent implements OnInit {
       this.doHeader.OrderKey = "0000";
       this.doHeader.CustKey="000";
     }
-    //this.doHeader.OrderKey = "0000";
-    //this.doHeader.CustKey="000";
-       //this.doHeader.OrderType="2";
-    // this.doHeader =  [{ "OrderKey":"hsdkhsk", 
-    // "OrderNo": "Maersk Line", 
-    // "CustKey": "ML0023",
-    // "OrderDate":"",
-    // "BillToAddress":"",
-    // "SourceAddress":"",
-    // "DestinationAddress":"",
-    // "ReturnAddress":"",
-    // "Source":"",
-    // "OrderType":"Import",
-    // "HoldReason":"",
-    // "HoldDate":"",    
-    // "BrokerName":"",
-    // "BrokerId":"",
-    // "Brokerkey":"",
-    // "BrokerRefNo":"",
-    // "PortofOriginKey":"",
-    // "CarrierKey":"",
-    // "BillofLading":"",
-    // "CutOffDate":"",
-    // "IsHazardous":"",
-    // "CreatedBy":"",
-    // "CreatedDate":"" }];
-  
- 
+   
     this.broker = [{ "BrokerName": "Maersk Line",
     "BrokerId": "ML0023",
     "BrokerKey":"ae24e3ba-5aad-11e9-94fc-332aa5298740",
