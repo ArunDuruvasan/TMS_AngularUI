@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Order_details } from '../../../_models/order_details';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-container',
@@ -8,22 +9,22 @@ import { Order_details } from '../../../_models/order_details';
 })
 export class ContainerComponent implements OnInit {
   
-  private ContainerDetails: Array<Order_details> = [];
-  private newAttribute: any = {};
+   @Input() public ContainerDetails: Array<Order_details> = [];
+   @Input() isContainerAttributeVisible : boolean=false;
+   private AddContainerDetails: Array<Order_details> = [];
+  private newAttribute: any = {};  
   @Output() ContainerDetailsOutput = new EventEmitter<any>();
 
    selectedcontainer:Order_details;
   constructor() { }
 
-  ngOnInit() {
-
-    
- }
+  ngOnInit() { 
+    } 
 
   addFieldValue() {
-    this.ContainerDetails.push(this.newAttribute)
+    this.AddContainerDetails.push(this.newAttribute);
     this.newAttribute = {};
-    this.ContainerDetailsOutput.emit(this.ContainerDetails);    
+    this.ContainerDetailsOutput.emit(this.AddContainerDetails);    
 }
 
 deleteFieldValue(index) {
