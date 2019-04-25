@@ -71,19 +71,16 @@
                 <h5 class="text-dark">Bill To</h5>
                 <app-customer name="BillToAddress" [(ngModel)]="doHeader.BillToAddress"
                   (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [billToaddressType]=1 [addressKeyTobind]='test'></app-customer>
-              </div>
-              <!--Col 3-->
+              </div>             
               <div class="col-md-3">
-                <h5 class="text-dark">Pick Up</h5>
-                <!-- <app-shippingport></app-shippingport>                       -->
+                <h5 class="text-dark">Pick Up</h5>                                  
                 <app-customer name="SourceAddress" [(ngModel)]="doHeader.SourceAddress" this.selectedBillToKey
                   (CustomerSelectedOutput)="onSelectedPickupAddress($event)"  [billToaddressType]=2></app-customer>
               </div>
               <div class="col-md-3">
                 <h5 class="text-dark">Consignee</h5>
                 <app-customer name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
-                  (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3></app-customer>
-                <!-- <app-vendor></app-vendor> -->
+                  (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3></app-customer>                
               </div>
               <div class="col-md-3">              
                 <h5 class="text-dark">Return</h5>
