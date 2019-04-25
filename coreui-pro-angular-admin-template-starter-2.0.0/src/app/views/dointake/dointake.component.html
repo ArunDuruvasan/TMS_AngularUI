@@ -69,26 +69,26 @@
             <div class="row">
               <div class="col-md-3">
                 <h5 class="text-dark">Bill To</h5>
-                <app-customer name="BillToAddress" [(ngModel)]="doHeader.BillToAddress"
-                  (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [billToaddressType]=1 [addressKeyTobind]='test'></app-customer>
+                <app-address name="BillToAddress" [(ngModel)]="doHeader.BillToAddress"
+                  (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [billToaddressType]=1 [addressKeyTobind]="doHeader.BillToAddress"></app-address>
               </div>
               <!--Col 3-->
               <div class="col-md-3">
                 <h5 class="text-dark">Pick Up</h5>
                 <!-- <app-shippingport></app-shippingport>                       -->
-                <app-customer name="SourceAddress" [(ngModel)]="doHeader.SourceAddress" this.selectedBillToKey
-                  (CustomerSelectedOutput)="onSelectedPickupAddress($event)"  [billToaddressType]=2></app-customer>
+                <app-customer name="SourceAddress" [(ngModel)]="doHeader.SourceAddress" 
+                  (CustomerSelectedOutput)="onSelectedPickupAddress($event)"  [billToaddressType]=2 [addressKeyTobind]="doHeader.SourceAddress"></app-customer>
               </div>
               <div class="col-md-3">
                 <h5 class="text-dark">Consignee</h5>
                 <app-customer name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
-                  (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3></app-customer>
+                  (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3 [addressKeyTobind]="doHeader.DestinationAddress"></app-customer>
                 <!-- <app-vendor></app-vendor> -->
               </div>
               <div class="col-md-3">              
                 <h5 class="text-dark">Return</h5>
                 <app-customer name="ReturnAddress" [(ngModel)]="doHeader.ReturnAddress"
-                  (CustomerSelectedOutput)="onSelectedReturnAddress($event)" [billToaddressType]=3></app-customer>
+                  (CustomerSelectedOutput)="onSelectedReturnAddress($event)" [billToaddressType]=3 [addressKeyTobind]="doHeader.ReturnAddress"></app-customer>
               </div>
             </div>
             
@@ -120,13 +120,13 @@
                       <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
                   </div> 
               </div>
-              <div class="form-group col-md-2">
+              <!-- <div class="form-group col-md-2">
                   <span>Shipment Weight</span>
                 <input type="text" id="txtShipwt" class="form-control" [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required/>
                 <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
                   <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
               </div> 
-              </div> 
+              </div>  -->
            <div class="form-group col-md-2">
                   <span>Freight charges</span>
                 <select id="drpFreightCharges" class="form-control" >
