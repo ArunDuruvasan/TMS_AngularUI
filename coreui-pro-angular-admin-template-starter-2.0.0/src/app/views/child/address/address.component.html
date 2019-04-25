@@ -1,4 +1,4 @@
-<div class="form-group dropright">
+<!-- <div class="form-group dropright">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="drpBillTo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Full Name:
     </button>
@@ -30,4 +30,33 @@
       <div class="form-group col-md-3">
        <input type="text" class="form-control" id="inputZip" placeholder="Zip">
       </div>
-    </div>
+    </div> -->
+
+    
+
+ <div class="form-group dropright">
+  <select [(ngModel)]="selectedCustomer" *ngIf="customer">
+    <option *ngFor='let Address of customer' [ngValue]="Address"  >
+      {{Address.Name}}
+    </option>
+</select>
+  </div>
+  <div *ngIf="selectedCustomer!=null">     
+   <div class="form-group">   
+      <input type="text" class="form-control form-control-sm text-primary" id="inputAddress"  placeholder="Address1" [(ngModel)]="selectedCustomer.Address1"> 
+   </div>
+   <div class="form-group">     
+      <input type="text" class="form-control form-control-sm text-primary" id="inputAddress2"  placeholder="Address2" [(ngModel)]="selectedCustomer.Address2">
+   </div>
+   <div class="form-row">
+     <div class="form-group col-md-5">            
+         <input type="text"  class="form-control form-control-sm text-primary" id="inputCity" placeholder="City" [(ngModel)]="selectedCustomer.City">
+     </div>
+     <div class="form-group col-md-4"> 
+       <input type="text" class="form-control form-control-sm text-primary" id="inputState" placeholder="State" [(ngModel)]="selectedCustomer.State">
+     </div>
+     <div class="form-group col-md-3">
+      <input type="text" class="form-control form-control-sm text-primary" id="inputZip" placeholder="Zip" [(ngModel)]="selectedCustomer.Zip">
+     </div>
+   </div>
+ </div>
