@@ -4,7 +4,7 @@
     {{billtoCustomerName}}
    </button>  
     <div class="dropdown-menu" aria-labelledby="drpBillTo">        
-            <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" 
+            <li *ngFor="let Address of customer" [(ngModel)]="selectedCustomer" 
             (click)="onSelect(Address)"  >               
               <a class="dropdown-item">{{Address.Name}}</a>              
             </li>            
