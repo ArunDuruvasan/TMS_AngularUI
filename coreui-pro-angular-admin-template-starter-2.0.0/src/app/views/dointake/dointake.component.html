@@ -10,16 +10,18 @@
     </div>
     
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <form name="form" (ngSubmit)="f.form.valid && onSubmit(form.value)" #f="ngForm" novalidate>
+      <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
         <div class="card-body">
           <div class="container-fluid">
             <div class="row">
-              <!-- <div class="col-md-2"> -->
-                <label  class="col-sm-2 col-form-label">Order Type</label>
-              <!-- </div> -->
-              <div class="col-md-3 ">                                                    
+              <!-- <div class="col-md-2 col-form-label">
+                <label >Order Type</label>
+              </div> -->
+              <div class="col-md-3">   
+                <span>Order Type</span>                                                 
                 <select id="cboOrderType" class="form-control"  name="OrderType" 
-                  [(ngModel)]="doHeader.OrderType"  > 
+                  [(ngModel)]="doHeader.OrderType" #OrderType="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && OrderType.invalid }" required > 
                   <option value="1" >Import</option>
                   <option value="2" >Import-No-Return</option>
                   <option value="3" >Export</option>
@@ -27,6 +29,9 @@
                   <option value="5" >Return-To-Terminal</option>
                   <option value="6" >One-Way-Delivery</option>
                 </select>
+                <div *ngIf="f.submitted && OrderType.invalid" class="invalid-feedback">
+                  <div *ngIf="OrderType.errors.required"> Order Type is required</div>
+              </div> 
               </div>                          
               <!-- <div class="col-md-4">
                 <div class="custom-file">
@@ -38,6 +43,27 @@
                 <button class="btn btn-secondary">Upload</button>
                 <button class="btn btn-link">View File</button>
               </div> -->
+              <div class="form-group col-md-2">
+                <span>Order No</span>
+              <input type="text" id="OrderNo" class="form-control" name="OrderNo"
+                [(ngModel)]="doHeader.OrderNo" #OrderNo="ngModel"                   
+                [ngClass]="{ 'is-invalid': f.submitted && OrderNo.invalid }" required/>
+                
+                <div *ngIf="f.submitted && OrderNo.invalid" class="invalid-feedback">
+                  <div *ngIf="OrderNo.errors.required"> Order No is required</div>
+              </div>
+            </div>
+            <div class="form-group col-md-3"> 
+                  <span>Order Date</span>
+                  <input type="date" class="form-control"  name="OrderDate" id ="OrderDate" 
+                        [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"                   
+                        [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required/> 
+
+                    <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
+                      <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
+                  </div>                                          
+            </div>
+
             </div>
             <hr>
             <div class="row">
@@ -75,7 +101,10 @@
               </div>
               <div class="form-group col-md-2">                  
                   <span class = "label label-primary">Broker Ref#</span>
-                <input type="text" id="txtBrokerRefNo"  class="form-control"  name="BrokerRefNo" #BrokerRefNo="ngModel" [(ngModel)]="doHeader.BrokerRefNo" [ngClass]="{ 'is-invalid': f.submitted && BrokerRefNo.invalid }" required/>
+                <input type="text" id="txtBrokerRefNo"  class="form-control form-control-sm text-primary"  name="BrokerRefNo" 
+                #BrokerRefNo="ngModel"
+                 [(ngModel)]="doHeader.BrokerRefNo" 
+                 [ngClass]="{ 'is-invalid': f.submitted && BrokerRefNo.invalid }" required/>
                     
                   <div *ngIf="f.submitted && BrokerRefNo.invalid" class="invalid-feedback">
                       <div *ngIf="BrokerRefNo.errors.required">Broker Ref No is required</div>
@@ -83,7 +112,7 @@
               </div>
               <div class="form-group col-md-2">                  
                   <span class = "label label-primary">Port of Origin</span>
-                <input type="text" id="txtPortofOrigin"  class="form-control"
+                <input type="text" id="txtPortofOrigin"  class="form-control form-control-sm text-primary"
                   name="PortofOriginKey" [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"                   
                   [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required/>
                   
@@ -91,11 +120,14 @@
                       <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
                   </div> 
               </div>
-              <div class="form-group col-md-2">
+              <!-- <div class="form-group col-md-2">
                   <span>Shipment Weight</span>
-                <input type="text" id="txtShipwt" class="form-control">
-              </div>
-              <div class="form-group col-md-2">
+                <input type="text" id="txtShipwt" class="form-control" [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required/>
+                <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
+                  <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
+              </div> 
+              </div> -->
+              <!-- <div class="form-group col-md-2">
                   <span>Freight charges</span>
                 <select id="drpFreightCharges" class="form-control" >
                   <option selected>Charges</option>
@@ -104,58 +136,85 @@
               </div>
               <div class="form-group col-md-2">
                   <span>Vessel Name</span>
-                <input type="text" id="txtVesselName"  class="form-control" name="VesselName"
-                  [(ngModel)]="doHeader.VesselName">
+                <input type="text" id="txtVesselName"  class="form-control form-control-sm text-primary" name="VesselName"
+                  [(ngModel)]="doHeader.VesselName" #VesselName="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && VesselName.invalid }" required/>
+
+                  <div *ngIf="f.submitted && VesselName.invalid" class="invalid-feedback">
+                    <div *ngIf="VesselName.errors.required">Vessel Name is required</div>
+                </div>
               </div>
             </div>
             <div class="row">
               
               <div class="form-group col-md-2">
                   <span>Bill of Loading</span>
-                <input type="text" id="txtBLNo"  class="form-control" name="BillofLading"
-                  [(ngModel)]="doHeader.BillofLading">
+                <input type="text" id="txtBLNo"  class="form-control form-control-sm text-primary" name="BillofLoading"
+                  [(ngModel)]="doHeader.BillofLading" #BillofLoading="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && BillofLoading.invalid }" required/>
+                  
+                  <div *ngIf="f.submitted && BillofLoading.invalid" class="invalid-feedback">
+                    <div *ngIf="BillofLoading.errors.required"> Bill of Loading is required</div>
+                </div>
               </div>
               <div class="form-group col-md-2">
                   <span>Booking #</span>
-                <input type="text" id="txtBookingNumBooking #" class="form-control" name="BookingNo"
-                  [(ngModel)]="doHeader.BookingNo"/>
-              </div>
-              <div class="form-group col-md-2">             
+                <input type="text" id="txtBookingNumBooking #" class="form-control form-control-sm text-primary" name="BookingNo"
+                  [(ngModel)]="doHeader.BookingNo" #BookingNo="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && BookingNo.invalid }" required/>
                   
+                  <div *ngIf="f.submitted && BookingNo.invalid" class="invalid-feedback">
+                    <div *ngIf="BookingNo.errors.required"> Booking No is required</div>
+                </div>
+              </div>
+              <div class="form-group col-md-3"> 
                       <span>Cut off Date</span>
-                    <input type="date" class="form-control"  name="CutOffDate"
-                      [(ngModel)]="doHeader.CutOffDate" />
-                                          
+                    <input type="date" class="form-control form-control-sm text-primary"  name="CutOffDate"
+                      [(ngModel)]="doHeader.CutOffDate" #CutOffDate="ngModel"                   
+                      [ngClass]="{ 'is-invalid': f.submitted && CutOffDate.invalid }" required/>
+                      
+                      <div *ngIf="f.submitted && CutOffDate.invalid" class="invalid-feedback">
+                        <div *ngIf="CutOffDate.errors.required"> Cut-Off Date is required</div>
+                    </div>                                          
               </div>
               <div class="form-group col-md-2">
                   <span>Boxes</span>
-                <input type="text" id="txtBoxes"  class="form-control">
+                <input type="text" id="txtBoxes"  class="form-control form-control-sm text-primary">
               </div>
             </div>
 <hr>
             <div class="row">
               <div class="form-group col-md-2">
                 <span>Carrier</span>
-                <select id="drpCarrier" class="form-control"  name="CarrierKey"
-                  [(ngModel)]="doHeader.CarrierKey">
+                <select id="drpCarrier" class="form-control form-control-sm text-primary"  name="CarrierKey"
+                  [(ngModel)]="doHeader.CarrierKey" #CarrierKey="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && CarrierKey.invalid }" required>
                   <option value ='045ffe13-a4da-48f8-94f8-96614631f513'>MAEU</option>
                   <option value ='74caf51f-d2df-47fe-849a-6f04a265cace'>SAFM</option>
                   <option value ='7fb48b2d-60a7-434f-b069-9b0b1d9f1219'>SEGO</option>
                 </select>
+                <div *ngIf="f.submitted && CarrierKey.invalid" class="invalid-feedback">
+                  <div *ngIf="CarrierKey.errors.required"> Carrier is required</div>
+              </div> 
               </div>
               <div class="form-group col-md-2">
                   <span>Priority</span>               
-                <select id="drpPriority" class="form-control" name="Priority"
-                  [(ngModel)]="doHeader.Priority">
+                <select id="drpPriority" class="form-control form-control-sm text-primary" name="Priority"
+                  [(ngModel)]="doHeader.Priority" #Priority="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && Priority.invalid }" required>
                   <option value=1>High</option>                  
                   <option value=2>Low</option>
                 </select>
+                <div *ngIf="f.submitted && Priority.invalid" class="invalid-feedback">
+                  <div *ngIf="Priority.errors.required"> Priority is required</div>
+              </div> 
               </div>
 
               <div class="form-group col-md-2">
                   <span>Status</span>                
-                  <select id="drpStatus" class="form-control" name="Status"
-                  [(ngModel)]="doHeader.Status">
+                  <select id="drpStatus" class="form-control form-control-sm text-primary" name="Status"
+                  [(ngModel)]="doHeader.Status" #Status="ngModel"                   
+                  [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>
                   <option value=1>In Progress</option>
                   <option value=2>Credit Denied</option>  
                   <option value=3>Sent to Scheduler</option>
@@ -166,10 +225,13 @@
                   <option value=8>Reviewed</option>
                   <option value=9>Complete</option>                
                 </select>
+                <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
+                  <div *ngIf="Status.errors.required"> Status is required</div>
+              </div> 
               </div>
               <div class="form-group col-md-2">              
                 <span>Hold Reason</span>
-                <select id="drpHoldReason" class="form-control" name="HoldReason"
+                <select id="drpHoldReason" class="form-control form-control-sm text-primary" name="HoldReason"
                   [(ngModel)]="doHeader.HoldReason">
                   <option value=1>No Confirmation From Customer</option>
                   <option value=2>Driver Availability</option>
@@ -179,7 +241,7 @@
             </div>
             <div class="row">
               <div class="form-group col-md-8">
-                <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"></textarea>
+                <textarea class="form-control form-control-sm text-primary" rows="3" id="txtcomment" placeholder="Comment"></textarea>
 
               </div>
               <div class="form-group col-md-4">
@@ -187,10 +249,10 @@
               </div>
             </div>
             <h5>Container Attributes</h5>
-            <hr>
+            <hr [hidden]="!isContainerAttributeVisible">
             <div class="row">
               <div class="col-md-12">
-                <app-container  (ContainerDetailsOutput)="onSelectedContainerDetails($event)"></app-container>                
+                <app-container  (ContainerDetailsOutput)="onSelectedContainerDetails($event)" [ContainerDetails]=doHeader.orderdetails  [isContainerAttributeVisible]="isContainerAttributeVisible"></app-container>                
               </div>
             </div>
             <div class="row">
