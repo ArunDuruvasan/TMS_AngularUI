@@ -34,6 +34,22 @@ export class CustomerComponent implements OnInit {
       }      
     }
 
+    ngOnChanges()
+    {
+      if(this.addressKeyTobind!= undefined)
+      { 
+        this.service.getAddress(this.billToaddressType).subscribe((data:any) => {this.customer = data;
+          if(this.addressKeyTobind)
+          {
+            this.selectedCustomer =this.customer.find(x=>x.AddrKey===this.addressKeyTobind);
+            this.billtoCustomerName= this.selectedCustomer.Name;
+          }},  
+        error => console.log(error),  
+        () => console.log('Get customer complete'));       
+      } 
+
+    }
+
   onSelect(CustomerSelected: Address): void {    
     this.CustomerSelectedOutput.emit(CustomerSelected.AddrKey);    
     this.selectedCustomer = CustomerSelected;
