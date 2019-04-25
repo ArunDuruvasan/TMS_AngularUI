@@ -8,7 +8,7 @@
                 <div class="card-group">  
                   <div class="card p-4">  
                     <div class="card-body">  
-                      <form (ngSubmit) ="onSubmit()" novalidate>  
+                      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>  
                         <h1>Login</h1>  
                         <p class="text-muted">Sign In to your account</p>  
                         
@@ -16,11 +16,14 @@
                           <div class="input-group-prepend">  
                             <span class="input-group-text"><i class="icon-user"></i></span>  
                           </div>  
-                          <input type="text" class="form-control" placeholder="UserName" autocomplete="UserName " required 
-                                 [(ngModel)]="model.username" name="username" >  
-                                 <div class="invalid-feedback">
-                                  Please provide a valid zip.
-                                </div>                            
+                          <input type="text" class="form-control" placeholder="UserName" autocomplete="UserName " 
+                                 [(ngModel)]="model.username" name="username" 
+                                 #username="ngModel"                   
+                                  [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required />  
+
+                                <div *ngIf="f.submitted && username.invalid" class="invalid-feedback">
+                                  <div *ngIf="username.errors.required"> User name is required</div>
+                              </div>                           
                             </div>  
     
                         <div class="input-group mb-4">  
@@ -28,7 +31,13 @@
                             <span class="input-group-text"><i class="icon-lock"></i></span>  
                           </div>  
                           <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" required 
-                          [(ngModel)]="model.password" name="password" >
+                          [(ngModel)]="model.password" name="password" 
+                          #password="ngModel"                   
+                          [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required />
+
+                          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                            <div *ngIf="password.errors.required"> Password is required</div>
+                        </div> 
                           </div>
     
                         <div class="input-group mb-3">  
@@ -36,7 +45,12 @@
                               <span class="input-group-text"><i class="icon-globe"></i></span>  
                             </div>  
                             <input type="text" class="form-control" placeholder="Company" autocomplete="current-company" required 
-                            [(ngModel)]="model.company" name="company">  
+                            [(ngModel)]="model.company" name="company" #company="ngModel"                   
+                            [ngClass]="{ 'is-invalid': f.submitted && company.invalid }" required />  
+
+                            <div *ngIf="f.submitted && company.invalid" class="invalid-feedback">
+                              <div *ngIf="company.errors.required"> Company is required</div>
+                          </div>
                           </div>
                           <div *ngIf="error" class="alert alert-danger">{{error}}</div>
                         <div class="row">  
