@@ -22,10 +22,13 @@ export class DOIntakeComponent implements OnInit {
   broker: Broker[];
   brokerName:string="Select Broker";
   public doHeader:DeliveryOrderHeader; 
+
+  isContainerAttributeVisible: boolean=true;
+
   orderNo:string;
   errorMessage:string;
   orderKey:string;
-  selectedBillToKey="";
+  selectedBillToKey:string;
    
   constructor(private service:DeliveryOrderService,  private router: Router,private route: ActivatedRoute) { }
   
@@ -61,19 +64,26 @@ export class DOIntakeComponent implements OnInit {
 
     if (this.orderNo != undefined)
     {
+      this.isContainerAttributeVisible = false;
+
        this.service.GetbyKey(this.orderNo).subscribe(data => this.doHeader = data,  
         error => console.log(error),  
-        () => console.log('Get Order Detail BillToAddress',this.doHeader.BillToAddress));
-        this.selectedBillToKey=this.doHeader.BillToAddress;
+        () => console.log('Get OrderHeader',this.doHeader));
+
+        this.service.GetOrderDetailsbyKey(this.orderNo).subscribe(data => this.doHeader.orderdetails = data,  
+          error => console.log(error),  
+          () => console.log('Get OrderDetail',this.doHeader.orderdetails));       
+
+        console.log('OrderHeader',this.doHeader);
+        console.log('OrderDetail',this.doHeader.orderdetails);
     }    
     else{
-        
+      this.doHeader.OrderKey = "0000";
+      this.doHeader.CustKey="000";
     }
-    this.doHeader.OrderKey = "";
-    this.doHeader.CustKey="";
-    this.doHeader.OrderDate="";
-    this.doHeader.OrderNo="Order0023";
-    //this.doHeader.OrderType="2";
+    //this.doHeader.OrderKey = "0000";
+    //this.doHeader.CustKey="000";
+       //this.doHeader.OrderType="2";
     // this.doHeader =  [{ "OrderKey":"hsdkhsk", 
     // "OrderNo": "Maersk Line", 
     // "CustKey": "ML0023",
@@ -105,7 +115,7 @@ export class DOIntakeComponent implements OnInit {
     "Status":"1"}];
   }
   
-  submit(value: DeliveryOrderHeader)
+  onSubmit(value: DeliveryOrderHeader)
   {       
    this.service.saveDOHeader(value).subscribe(
     result => this.orderKey = result,
@@ -113,7 +123,7 @@ export class DOIntakeComponent implements OnInit {
   
   //applying orderkey to order details 
   for (let order of this.doHeader.orderdetails) {
-    order.orderkey = this.orderKey;   
+    order.OrderKey = this.orderKey;   
     }  
     
     this.service.saveOrderDetails(this.doHeader.orderdetails).subscribe(
