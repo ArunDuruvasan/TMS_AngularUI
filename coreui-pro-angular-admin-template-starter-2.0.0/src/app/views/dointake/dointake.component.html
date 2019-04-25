@@ -71,16 +71,19 @@
                 <h5 class="text-dark">Bill To</h5>
                 <app-customer name="BillToAddress" [(ngModel)]="doHeader.BillToAddress"
                   (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [billToaddressType]=1 [addressKeyTobind]='test'></app-customer>
-              </div>             
+              </div>
+              <!--Col 3-->
               <div class="col-md-3">
-                <h5 class="text-dark">Pick Up</h5>                                  
+                <h5 class="text-dark">Pick Up</h5>
+                <!-- <app-shippingport></app-shippingport>                       -->
                 <app-customer name="SourceAddress" [(ngModel)]="doHeader.SourceAddress" this.selectedBillToKey
                   (CustomerSelectedOutput)="onSelectedPickupAddress($event)"  [billToaddressType]=2></app-customer>
               </div>
               <div class="col-md-3">
                 <h5 class="text-dark">Consignee</h5>
                 <app-customer name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
-                  (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3></app-customer>                
+                  (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3></app-customer>
+                <!-- <app-vendor></app-vendor> -->
               </div>
               <div class="col-md-3">              
                 <h5 class="text-dark">Return</h5>
@@ -117,14 +120,14 @@
                       <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
                   </div> 
               </div>
-              <!-- <div class="form-group col-md-2">
+              <div class="form-group col-md-2">
                   <span>Shipment Weight</span>
                 <input type="text" id="txtShipwt" class="form-control" [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required/>
                 <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
                   <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
               </div> 
-              </div> -->
-              <!-- <div class="form-group col-md-2">
+              </div> 
+           <div class="form-group col-md-2">
                   <span>Freight charges</span>
                 <select id="drpFreightCharges" class="form-control" >
                   <option selected>Charges</option>
@@ -322,7 +325,7 @@
       </div>
     </div>
   </div>
-  <!--<div class="card">
+  <div class="card">
     <div class="card-header" id="headingThree">
         <h5 class="mb-0">
           <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
@@ -337,8 +340,8 @@
   </div>
 </div>
 </div>
-</div>-->
-  <!--<div class="card">
+</div>
+  <div class="card">
     <div class="card-header" id="headingFour">
         <h5 class="mb-0">
           <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
@@ -351,7 +354,7 @@
        <app-billingrates></app-billingrates>
 </div>
 </div>
-</div> -->
+</div>
   <div class="card">
     <div class="card-header" id="headingFive">
       <h5 class="mb-0">
