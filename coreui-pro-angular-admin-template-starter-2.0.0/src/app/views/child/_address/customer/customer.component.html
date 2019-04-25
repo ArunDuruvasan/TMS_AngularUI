@@ -1,11 +1,8 @@
 
-<!-- <div class="card bg-light text-white">
-    <div class="card-body"> -->
 <div class="form-group dropright">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="drpBillTo"  
-  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-  >{{billtoCustomerName}}
-    </button>  
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="drpBillTo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{billtoCustomerName}}
+   </button>  
     <div class="dropdown-menu" aria-labelledby="drpBillTo">        
             <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" 
             (click)="onSelect(Address)"  >               
@@ -33,5 +30,3 @@
     </div>
   </div>
 </div>
-<!-- </div>
-</div> -->
