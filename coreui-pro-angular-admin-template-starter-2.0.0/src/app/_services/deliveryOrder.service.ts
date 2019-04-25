@@ -20,8 +20,7 @@ public saveDOHeader(OrderHeader:DeliveryOrderHeader)
   // const config = new HttpHeaders().set('Content-Type', 'application/json')
   //                               .set('Accept', 'application/json')
   OrderHeader.OrderKey = "";
-  OrderHeader.CustKey="";
-  OrderHeader.OrderDate="2019-04-10T06:11:35.481";
+  OrderHeader.CustKey="";  
   OrderHeader.OrderNo="test";
   OrderHeader.Source ="2";
   return this.http.post<any>( AppSettings._BaseURL + 'DeliveryOrderHeader/',OrderHeader);
@@ -43,5 +42,8 @@ public GetbyKey(OrderKey:any) {
  return this.http.get<DeliveryOrderHeader>(AppSettings._BaseURL + 'GetbyKey/'+OrderKey);   
  //return this.http.get<DeliveryOrderHeader>( 'http://localhost:51902/GetbyKey?OrderKey='+ OrderKey); 
 }
-
+public GetOrderDetailsbyKey(OrderKey:any) {
+  return this.http.get<Order_details[]>(AppSettings._BaseURL + 'GetDeliveryOrderDetail/'+OrderKey);   
+  //return this.http.get<DeliveryOrderHeader>( 'http://localhost:51902/GetbyKey?OrderKey='+ OrderKey); 
+ }
 }
