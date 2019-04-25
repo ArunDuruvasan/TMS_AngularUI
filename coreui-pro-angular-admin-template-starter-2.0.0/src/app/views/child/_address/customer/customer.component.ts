@@ -8,7 +8,7 @@ import { AddressService } from '../../../../_services/address.service';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
-  billtoCustomerName:string="Select Bill To";
+  billtoCustomerName:string="Select";
   customer: Address[];
   addressTobind:Address=new Address();
 
