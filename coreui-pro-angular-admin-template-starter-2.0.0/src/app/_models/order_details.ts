@@ -1,17 +1,17 @@
 export class Order_details {
-        orderdetailkey :string;
-        orderkey:string;
-        containerSize:string;
-        containerNo:string;
-        chassis:string;
-        sealNo: string;
-        weight:number;
-        apptdatefrom:string;
-        apptdateto:string;
-        status:string;
-        statusdate:string;
-        holdreason:string;
-        holddate:string;
+        OrderDetailKey :string;
+        OrderKey:string;
+        ContainerSize:string;
+        ContainerNo:string;
+        Chassis:string;
+        SealNo: string;
+        Weight:string;
+        AppDateFrom:Date;
+        AppDateTo:Date;
+        Status:string;
+        StatusDate:Date;
+        HoldReason:string;
+        HoldDate:Date;
 
     
     
