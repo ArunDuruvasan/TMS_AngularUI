@@ -61,7 +61,7 @@
 
                   <div class="form-group col-md-2"> 
                     
-                        <input type="text" id="AppDateFrom" name="AppDateFrom" [matDatepicker]="myDatepicker" matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newAttribute.AppDateFrom" class="form-control" 
+                        <input type="text" id="AppDateFrom" name="AppDateFrom"  placeholder="Choose a date" [(ngModel)]="newAttribute.AppDateFrom" class="form-control" 
                           #AppDateFrom="ngModel"                   
                         [ngClass]="{ 'is-invalid': f.submitted && AppDateFrom.invalid }" required/>
                            
